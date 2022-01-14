@@ -2,7 +2,6 @@ package cuteuser.company;
 
 public class Client extends Thread {
     Bank bank;
-    int money = 0;
     Client(Bank b) {
         this.bank = b;
         start();
@@ -10,8 +9,10 @@ public class Client extends Thread {
 
     public void run() {
         while (true) {
-            bank.getMoney();
-            bank.putMoney();
+            synchronized (bank) {
+                bank.getMoney();
+                bank.putMoney();
+            }
         }
     }
 }

@@ -11,7 +11,9 @@ public class Main {
         }
         int i=0;
         while (true) {
-            System.out.println(i++ + " Bank: " + bank.account);
+            synchronized (bank) {
+                System.out.println(i++ + " Bank: " + bank.account);
+            }
         }
     }
 }
