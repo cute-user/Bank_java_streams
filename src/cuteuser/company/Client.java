@@ -8,21 +8,10 @@ public class Client extends Thread {
         start();
     }
 
-    void getMoney() {
-        money = 3000;
-        synchronized (bank) {
-            bank.account -= money;
-        }
-    }
-    void putMoney() {
-        synchronized (bank) {
-        bank.account += money;
-        money = 0;
-    }
     public void run() {
         while (true) {
-            getMoney();
-            putMoney();
+            bank.getMoney();
+            bank.putMoney();
         }
     }
 }
